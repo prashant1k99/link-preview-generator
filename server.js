@@ -40,11 +40,13 @@ function scrape(url) {
     });
 }
 
-app.get("/", function(request, response) {
-  let data = scrape(
+app.get("/", async function(req, res) {
+  await scrape(
     "https://blog.bitsrc.io/https-blog-bitsrc-io-how-to-perform-web-scraping-using-node-js-5a96203cb7cb"
-  );
-  response.json()
+  ).then( data => {
+    console.log(data);
+    res.json(data);
+  });  
 });
 
 // listen for requests :)
