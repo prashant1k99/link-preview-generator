@@ -4,21 +4,18 @@ const axios = require("axios");
 
 function scrape(url){
   let data;
-  axios.get(url)
-  .then( data => {
-    this.data = data;
-  })
-  .catch( err => {
-    console.log(err)
-  }) 
-  return data
+  
 }
 
 app.get("/", function(request, response) {
-  
-  const res = scrape('https://blog.bitsrc.io/https-blog-bitsrc-io-how-to-perform-web-scraping-using-node-js-5a96203cb7cb');
-  console.log("Fire");
-  response.send("Hello");
+  axios.get('https://blog.bitsrc.io/https-blog-bitsrc-io-how-to-perform-web-scraping-using-node-js-5a96203cb7cb')
+  .then( data => {
+    
+    response.send(JSON.stringify(data));
+  })
+  .catch( err => {
+    console.log(err)
+  })  
 });
 
 // listen for requests :)
