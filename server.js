@@ -1,21 +1,27 @@
 const express = require("express");
 const app = express();
 const axios = require("axios");
-const cheerio = require("")
+const cheerio = require("cheerio");
 
 function scrape(url){
-  let data;
-  
-}
-
-app.get("/", function(request, response) {
-  axios.get('https://blog.bitsrc.io/https-blog-bitsrc-io-how-to-perform-web-scraping-using-node-js-5a96203cb7cb')
+  axios.get(url)
   .then( data => {  
-    response.send(data);
+    let reqData = data => {
+      data = [];
+      const $ = cheerio.load(data.data);
+      data.title = $('title').text;
+      console.log(data)
+    }
+    return data;
   })
   .catch( err => {
     console.log(err)
   })  
+}
+
+app.get("/", function(request, response) {
+  let data = scrape('https://blog.bitsrc.io/https-blog-bitsrc-io-how-to-perform-web-scraping-using-node-js-5a96203cb7cb');
+  
 });
 
 // listen for requests :)
