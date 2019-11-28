@@ -3,28 +3,36 @@ const cheerio = require('cheerio');
 
 const url = "https://blog.bitsrc.io/https-blog-bitsrc-io-how-to-perform-web-scraping-using-node-js-5a96203cb7cb"
 
-axios.get(url)
-  .then( data => {
+axios
+  .get(url)
+  .then(data => {
     let fData = [];
-    let si = fData.site;
-    let og = fData.o_g;
-    let tw = fData.twitter;
     const $ = cheerio.load(data.data);
     fData.sitename = $("meta[property='og:site_name']").attr("content");
-//   Normal
-    fData.site.title = $('title').text();
-    fData.site.description = $("meta[name='description']").attr("content");
-  
-//     OG
-    og.title = $("meta[property='og:title']").attr("content");
-    og.description = $("meta[property='og:description']").attr("content");
-  
-//   Twitter Card
-    tw.title = $("meta[property='twitter:title']").attr("content");
-    tw.description = $("meta[property='twitter:description']").attr("content");
-  
-    console.log(fData)
+    //   Normal
+    let site = {
+      type: "Normal",
+      title: $("title").text(),
+      description: $("meta[name='description']").attr("content")
+    };
+    //     OG
+    let og = {
+      type: "OG",
+      title: $("meta[property='og:title']").attr("content"),
+      description: $("meta[property='og:description']").attr("content")
+    };
+    //   Twitter Card
+    let tw = {
+      type: "Twitter Card",
+      title: $("meta[property='twitter:title']").attr("content"),
+      description: $("meta[property='twitter:description']").attr("content")
+    };
+
+    fData.push(site);
+    fData.push(og);
+    fData.push(tw);
+    console.log(fData);
   })
-  .catch( err => {
-    console.log(err)
-  }) 
+  .catch(err => {
+    console.log(err);
+  }); 
