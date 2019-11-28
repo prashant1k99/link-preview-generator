@@ -1,13 +1,11 @@
-import cheerio from 'cheerio';
-import fetch from 'node-fetch';
+import axios from 'axios';
 
-const data = await fetch('https://github.com/trending');
-const $ = cheerio.load(await data.text());
-const allTitles = $('.repo-list li')
-  .get()
-  .map(repo => {
-    const $repo = $(repo);
-    const title = $repo.find('h3').text();
-    return title;
-  });
-console.log(allTitles);
+const url = "https://blog.bitsrc.io/https-blog-bitsrc-io-how-to-perform-web-scraping-using-node-js-5a96203cb7cb"
+
+axios.get(url)
+  .then( data => {
+    console.log(data)
+  })
+  .catch( err => {
+    console.log(err)
+  }) 
