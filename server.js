@@ -4,50 +4,49 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 
 function scrape(url) {
+  let FinalData;
   axios
     .get(url)
     .then(data => {
-      let fData = [];
+      return fetchData(data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  
+  const fetchData = (data) => {
+    let fData = [];
       const $ = cheerio.load(data.data);
       fData.sitename = $("meta[property='og:site_name']").attr("content");
-      //   Normal
       let site = {
         type: "Normal",
         title: $("title").text(),
         description: $("meta[name='description']").attr("content")
       };
-      //     OG
       let og = {
         type: "OG",
         title: $("meta[property='og:title']").attr("content"),
         description: $("meta[property='og:description']").attr("content")
       };
-      //   Twitter Card
       let tw = {
         type: "Twitter Card",
         title: $("meta[property='twitter:title']").attr("content"),
         description: $("meta[property='twitter:description']").attr("content")
       };
-
       fData.push(site);
       fData.push(og);
       fData.push(tw);
-      console.log(fData);
-      return fData;
-    })
-    .catch(err => {
-      console.log(err);
-    });
+      return (fData);
+  }
 }
 
-app.get("/", async function(req, res) {
-  await scrape(
+app.get("/", async (req, res) => {
+  let data = await scrape(
     "https://blog.bitsrc.io/https-blog-bitsrc-io-how-to-perform-web-scraping-using-node-js-5a96203cb7cb"
-  ).then( data => {
+  )
     console.log(data);
     res.json(data);
-  });  
-});
+  });
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {
