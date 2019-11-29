@@ -5,7 +5,7 @@ It is the Node implementation for creating Link Preview...
 
 Remix the [Glitch Project here...]{https://glitch.com/~peaceful-headphones}
 
-[Demo}{https://peaceful-headphones.glitch.me?url=https%3A%2F%2Fgithub.com%2Fprashant1k99}
+[Demo]{https://peaceful-headphones.glitch.me?url=https%3A%2F%2Fgithub.com%2Fprashant1k99}
 
 Response from Server
 ------------
