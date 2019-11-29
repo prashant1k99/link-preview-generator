@@ -1,8 +1,9 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-const url = "https://blog.bitsrc.io/https-blog-bitsrc-io-how-to-perform-web-scraping-using-node-js-5a96203cb7cb"
+// const url = "https://blog.bitsrc.io/https-blog-bitsrc-io-how-to-perform-web-scraping-using-node-js-5a96203cb7cb"
 
+const scrape = url => {
 axios
   .get(url)
   .then(data => {
@@ -32,7 +33,11 @@ axios
     fData.push(og);
     fData.push(tw);
     console.log(fData);
+    return fData;
   })
   .catch(err => {
     console.log(err);
-  }); 
+  });   
+}
+
+export default scrape;
