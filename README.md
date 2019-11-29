@@ -1,27 +1,49 @@
-Welcome to Glitch
+Link Preview Node
 =================
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
+It is the Node implementation for creating Link Preview...
 
-**Glitch** is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
+Remix the [Glitch Project here...]{https://glitch.com/~peaceful-headphones}
 
-Find out more [about Glitch](https://glitch.com/about).
+[Demo}{https://peaceful-headphones.glitch.me?url=https%3A%2F%2Fgithub.com%2Fprashant1k99}
 
-
-Your Project
+Response from Server
 ------------
+```json
+[
+   {
+      "type":"Simple",
+      "title":"prashant1k99 (Prashant Singh) · GitHub",
+      "description":"I am Owner of NerdyACE, and with passion and skills, I am a Web-Developer, an SEO Expert and most of important of all, I am a Machine Learning Expert... - prashant1k99",
+      "icon":"https://github.githubassets.com/favicon.ico"
+   },
+   {
+      "type":"OG",
+      "title":"prashant1k99 - Overview",
+      "description":"I am Owner of NerdyACE, and with passion and skills, I am a Web-Developer, an SEO Expert and most of important of all, I am a Machine Learning Expert... - prashant1k99",
+      "image":"https://avatars3.githubusercontent.com/u/41435180?s=400&v=4"
+   },
+   {
+      "type":"Twitter Card"
+   }
+]
+```
+It returns data as 3 different Objects in a single Array:
+- type: Simple,
+  It is the normal data,
+  
+- type: OG,
+  It is the Data used by OpenGraph for Instagram and Facebook
+  
+- type: Twitter Card,
+  It is the data used to create Twitter Cards
 
-On the front-end,
-- edit `public/client.js`, `public/style.css` and `views/index.html`
-- drag in `assets`, like images or music, to add them to your project
-
-On the back-end,
-- your app starts at `server.js`
-- add frameworks and packages in `package.json`
-- safely store app secrets in `.env` (nobody can see this but you and people you invite)
-
-
-Made by [Glitch](https://glitch.com/)
+Request:
 -------------------
+User can request for the data by passing the param as ```url```
+example:
+```url
+https://peaceful-headphones.glitch.me?url=https%3A%2F%2Fgithub.com%2Fprashant1k99
+```
 
 \ ゜o゜)ノ
