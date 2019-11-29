@@ -3,7 +3,7 @@ const cheerio = require("cheerio");
 
 // const url = "https://blog.bitsrc.io/https-blog-bitsrc-io-how-to-perform-web-scraping-using-node-js-5a96203cb7cb"
 
-const scrape = url => {
+const scrape = new Promise(url => {
   axios
     .get(url)
     .then(data => {
@@ -32,12 +32,12 @@ const scrape = url => {
       fData.push(site);
       fData.push(og);
       fData.push(tw);
-      return fData;
+      resolve(fData);
     })
     .catch(err => {
       console.log(err);
     });
-};
+});
 module.exports = scrape;
 
 // export default scrape;
