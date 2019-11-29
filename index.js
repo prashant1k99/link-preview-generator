@@ -3,8 +3,7 @@ const app = express();
 const scrape = require("./scrapper.js")
 
 app.get("/", async (req, res) => {
-    // let data = await scrape("https://blog.bitsrc.io/https-blog-bitsrc-io-how-to-perform-web-scraping-using-node-js-5a96203cb7cb")
-    let data = await scrape(req.body)
+    let data = await scrape(req.query.url)
     res.json(data);
   });
 

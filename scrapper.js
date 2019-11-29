@@ -12,9 +12,11 @@ const scrape = url => {
       fData.sitename = $("meta[property='og:site_name']").attr("content");
       //   Normal
       let site = {
-        type: "Normal",
+        type: "Simple",
         title: $("title").text(),
-        description: $("meta[name='description']").attr("content")
+        description: $("meta[name='description']").attr("content"),
+        icon: '',
+        image: ''
       };
       //     OG
       let og = {
