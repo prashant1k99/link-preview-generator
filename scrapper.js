@@ -1,13 +1,16 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-// const url = "https://blog.bitsrc.io/https-blog-bitsrc-io-how-to-perform-web-scraping-using-node-js-5a96203cb7cb"
-
 const validateURL = url => {
-  ^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$
+  let exp = /^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/igm;
+  return exp.exec(url);
 }
 
 const scrape = url => {
+  let res = validateURL(url)
+  if(!res){
+    return "Invalid URL";
+  }
   return axios
     .get(url)
     .then(data => {
@@ -41,7 +44,7 @@ const scrape = url => {
       return(fData);
     })
     .catch(err => {
-      return(err);
+      return("Err:" + err);
     });
 };
 module.exports = scrape;

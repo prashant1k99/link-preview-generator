@@ -4,7 +4,10 @@ const scrape = require("./scrapper.js")
 
 app.get("/", async (req, res) => {
     let data = await scrape(req.query.url)
-    res.json(data);
+    if(Array.isArray(data)){
+      res.json(data);
+    }
+    res.status(400).send('Bad Request');
   });
 
 // listen for requests :)
